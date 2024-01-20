@@ -10,7 +10,7 @@ import UIKit
 final class ImageProvider {
     private static let provider = NertworkProvider()
 
-    func getImage(url: String, _ completion: @escaping (UIImage) -> Void) {
+    static func getImage(url: String, _ completion: @escaping (UIImage) -> Void) {
         let request = ImageRequest(url: url)
         Self.provider.makeRequest(request) { (result: Result<Data, Error>) in
             if case let .success(data) = result,

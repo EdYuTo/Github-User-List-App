@@ -64,7 +64,7 @@ final class NertworkProvider: NertworkProviderProcotol {
             throw NertworkError.invalidParams
         }
 
-        var urlRequest = URLRequest(url: url)
+        var urlRequest = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
         urlRequest.httpMethod = request.httpMethod.rawValue
         urlRequest.httpBody = request.body
         request.headers?.forEach { key, value in
