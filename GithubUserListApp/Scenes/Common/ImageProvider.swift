@@ -11,7 +11,7 @@ final class ImageProvider {
     private static let provider = NertworkProvider()
 
     func getImage(url: String, _ completion: @escaping (UIImage) -> Void) {
-        let request = NetworkRequest(endpoint: url)
+        let request = ImageRequest(url: url)
         Self.provider.makeRequest(request) { (result: Result<Data, Error>) in
             if case let .success(data) = result,
                let image = UIImage(data: data) {
@@ -19,5 +19,13 @@ final class ImageProvider {
             }
             completion(UIImage())
         }
+    }
+}
+
+fileprivate struct ImageRequest: NetworkRequest {
+    var url: String
+    
+    var endpoint: String {
+        url
     }
 }

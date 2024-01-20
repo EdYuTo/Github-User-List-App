@@ -65,7 +65,7 @@ final class NertworkProvider: NertworkProviderProcotol {
         }
 
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = request.httpMethod?.rawValue
+        urlRequest.httpMethod = request.httpMethod.rawValue
         urlRequest.httpBody = request.body
         request.headers?.forEach { key, value in
             urlRequest.addValue(value, forHTTPHeaderField: key)
