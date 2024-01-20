@@ -29,6 +29,7 @@
 		23D8A1BE2B5C3650003A0A4C /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1BD2B5C3650003A0A4C /* UserViewModel.swift */; };
 		23D8A1C02B5C3CBE003A0A4C /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1BF2B5C3CBE003A0A4C /* UserTableViewCell.swift */; };
 		23D8A1C22B5C484B003A0A4C /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1C12B5C484B003A0A4C /* LoadingTableViewCell.swift */; };
+		23D8A1C42B5C6AE0003A0A4C /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1C32B5C6AE0003A0A4C /* Spacing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		23D8A1BD2B5C3650003A0A4C /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		23D8A1BF2B5C3CBE003A0A4C /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		23D8A1C12B5C484B003A0A4C /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		23D8A1C32B5C6AE0003A0A4C /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			children = (
 				23D8A1B42B5C2619003A0A4C /* ImageProvider.swift */,
 				23D8A1BB2B5C350D003A0A4C /* ViewCodeProtocol.swift */,
+				23D8A1C32B5C6AE0003A0A4C /* Spacing.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				23D8A1AC2B5C2502003A0A4C /* UserListResponse.swift in Sources */,
 				23D8A1B22B5C2577003A0A4C /* NetworkRequest.swift in Sources */,
 				23D8A1AE2B5C253F003A0A4C /* NertworkError.swift in Sources */,
+				23D8A1C42B5C6AE0003A0A4C /* Spacing.swift in Sources */,
 				23D8A1B92B5C318B003A0A4C /* UserListPresenter.swift in Sources */,
 				23D8A1B02B5C2557003A0A4C /* HTTPMethod.swift in Sources */,
 				23D8A1A92B5C22C0003A0A4C /* UserListRouter.swift in Sources */,
