@@ -120,7 +120,6 @@ extension UserListScreen: UserListDisplayProtocol {
             tableView.reloadData()
         } else {
             let loadingIndex = IndexPath(row: size, section: .zero)
-            let lastIndex = IndexPath(row: size-1, section: .zero)
             let newRows = (size+1...modelList.count).map { row in
                 IndexPath(row: row, section: 0)
             }
