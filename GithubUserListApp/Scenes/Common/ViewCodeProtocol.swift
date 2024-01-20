@@ -11,14 +11,14 @@ protocol ViewCodeProtocol {
     func setupConstraints()
     func setupConfigurations()
 }
- 
+
 extension ViewCodeProtocol {
     func setupView() {
         setupHierarchy()
         setupConstraints()
         setupConfigurations()
     }
-    
+
     func setupConfigurations() {
         /* Optional */
     }

@@ -22,9 +22,9 @@ final class ImageProvider {
     }
 }
 
-fileprivate struct ImageRequest: NetworkRequest {
+private struct ImageRequest: NetworkRequest {
     var url: String
-    
+
     var endpoint: String {
         url
     }

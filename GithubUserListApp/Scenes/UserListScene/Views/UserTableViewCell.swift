@@ -12,21 +12,21 @@ final class UserTableViewCell: UITableViewCell {
     static let reuseIdentifier = "UserTableViewCell"
     let iconSize: CGFloat = 64
     var model: UserViewModel!
-    
+
     // MARK: - Views
     lazy var avatar: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     lazy var loadingView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .gray)
         view.startAnimating()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     lazy var iconView: UIImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = iconSize / 2
@@ -34,14 +34,14 @@ final class UserTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     lazy var userName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         return label
     }()
-    
+
     lazy var mainStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [avatar, userName])
         stack.axis = .horizontal
@@ -49,14 +49,14 @@ final class UserTableViewCell: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     // MARK: - Life cycle
     override func prepareForReuse() {
         super.prepareForReuse()
         updateAvatar(with: loadingView)
         loadingView.startAnimating()
     }
-    
+
     // MARK: Methods
     func configure(_ model: UserViewModel) {
         self.model = model
@@ -69,7 +69,7 @@ final class UserTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
     private func updateAvatar(with view: UIView?) {
         guard let view = view else { return }
         avatar.subviews.forEach { view in
@@ -94,7 +94,7 @@ extension UserTableViewCell: ViewCodeProtocol {
         avatar.addSubview(loadingView)
         avatar.addSubview(iconView)
     }
-    
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.x16.value),
@@ -105,7 +105,7 @@ extension UserTableViewCell: ViewCodeProtocol {
             avatar.widthAnchor.constraint(equalToConstant: iconSize),
             avatar.heightAnchor.constraint(equalTo: avatar.widthAnchor)
         ])
-        
+
         avatar.subviews.forEach { view in
             NSLayoutConstraint.activate([
                 view.widthAnchor.constraint(equalTo: avatar.widthAnchor),

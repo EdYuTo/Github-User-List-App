@@ -51,7 +51,7 @@ extension UserListScreen: ViewCodeProtocol {
     func setupHierarchy() {
         view.addSubview(tableView)
     }
-    
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -67,7 +67,7 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         modelList.count + 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < modelList.count {
             return loadUserCell(tableView, indexPath)
@@ -75,23 +75,23 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
             return loadLoadingCell(tableView, indexPath)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard indexPath.row < modelList.count else { return }
         router.openDetails(modelList[indexPath.row].reposUrl)
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let height = scrollView.frame.size.height
         let contentYOffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYOffset
-        
+
         if distanceFromBottom < height {
             interactor.fetchList()
         }
     }
-    
+
     private func loadUserCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         guard let viewCell = tableView.dequeueReusableCell(
             withIdentifier: UserTableViewCell.reuseIdentifier,
@@ -102,7 +102,7 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
         viewCell.configure(modelList[indexPath.row])
         return viewCell
     }
-    
+
     private func loadLoadingCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(
             withIdentifier: LoadingTableViewCell.reuseIdentifier,
