@@ -13,4 +13,5 @@ struct NetworkRequest {
     var httpMethod: HTTPMethod? = .get
     var queryParams: [String: String]?
     var headers: [String: String]?
+    var decoder: JSONDecoder = JSONDecoder()
 }

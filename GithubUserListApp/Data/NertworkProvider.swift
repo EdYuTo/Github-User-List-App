@@ -41,7 +41,7 @@ final class NertworkProvider: NertworkProviderProcotol {
             switch result {
             case let .success(data):
                 do {
-                    let decodedResponse = try JSONDecoder().decode(T.self, from: data)
+                    let decodedResponse = try request.decoder.decode(T.self, from: data)
                     completion(.success(decodedResponse))
                 } catch {
                     completion(.failure(NertworkError.decodingError(error.localizedDescription)))
