@@ -26,7 +26,6 @@ extension UserListInteractor: UserListInteractorProtocol {
     func fetchList() {
         guard !isLoading else { return }
         isLoading.toggle()
-        debugPrint("fetch list for id:", lastId)
         let request = UserListRequest(lastId: lastId, pageSize: pageSize)
         provider.makeRequest(request) { [weak self] (result: Result<UserListResponse, Error>) in
             self?.isLoading.toggle()

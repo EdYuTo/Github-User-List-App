@@ -19,7 +19,7 @@ extension UserListPresenter: UserListPresenterProtocol {
     func presentData(_ response: UserListResponse) {
         let data = response.map { userResponse in
             UserViewModel(
-                userName: userResponse.login,
+                userName: "@\(userResponse.login)",
                 avatarUrl: userResponse.avatarUrl,
                 reposUrl: userResponse.reposUrl
             )
