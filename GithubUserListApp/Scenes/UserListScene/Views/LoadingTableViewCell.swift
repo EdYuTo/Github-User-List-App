@@ -9,7 +9,7 @@ import UIKit
 
 final class LoadingTableViewCell: UITableViewCell {
     // MARK: - Properties
-    static let reuseIdentifier = "LoadingTableViewCell"
+    static let reuseIdentifier = String(describing: LoadingTableViewCell.self)
 
     // MARK: - Views
     lazy var loadingView: UIActivityIndicatorView = {

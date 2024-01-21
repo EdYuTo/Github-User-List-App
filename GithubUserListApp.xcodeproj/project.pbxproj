@@ -31,6 +31,8 @@
 		23D8A1C22B5C484B003A0A4C /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1C12B5C484B003A0A4C /* LoadingTableViewCell.swift */; };
 		23D8A1C42B5C6AE0003A0A4C /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1C32B5C6AE0003A0A4C /* Spacing.swift */; };
 		23D8A1C62B5C95AA003A0A4C /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1C52B5C95AA003A0A4C /* ErrorTableViewCell.swift */; };
+		23D8A1CE2B5CAE4E003A0A4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23D8A1D02B5CAE4E003A0A4C /* Localizable.strings */; };
+		23D8A1D62B5CAFDA003A0A4C /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1D52B5CAFDA003A0A4C /* Localizable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,9 @@
 		23D8A1C12B5C484B003A0A4C /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		23D8A1C32B5C6AE0003A0A4C /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		23D8A1C52B5C95AA003A0A4C /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
+		23D8A1CF2B5CAE4E003A0A4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		23D8A1D12B5CAF0A003A0A4C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		23D8A1D52B5CAFDA003A0A4C /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +134,7 @@
 		23D8A1672B5BFDF6003A0A4C /* GithubUserListApp */ = {
 			isa = PBXGroup;
 			children = (
+				23D8A1D22B5CAF8C003A0A4C /* Localization */,
 				23D8A1A02B5C026A003A0A4C /* Resources */,
 				23D8A19B2B5C0210003A0A4C /* Scenes */,
 				23D8A19A2B5C0202003A0A4C /* Data */,
@@ -236,6 +242,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		23D8A1D22B5CAF8C003A0A4C /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				23D8A1D02B5CAE4E003A0A4C /* Localizable.strings */,
+				23D8A1D52B5CAFDA003A0A4C /* Localizable.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -322,6 +337,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 23D8A15C2B5BFDF6003A0A4C;
 			productRefGroup = 23D8A1662B5BFDF6003A0A4C /* Products */;
@@ -341,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23D8A1752B5BFDFE003A0A4C /* LaunchScreen.storyboard in Resources */,
+				23D8A1CE2B5CAE4E003A0A4C /* Localizable.strings in Resources */,
 				23D8A1722B5BFDFE003A0A4C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +385,7 @@
 			files = (
 				23D8A1B72B5C2F66003A0A4C /* UserListRequest.swift in Sources */,
 				23D8A1C22B5C484B003A0A4C /* LoadingTableViewCell.swift in Sources */,
+				23D8A1D62B5CAFDA003A0A4C /* Localizable.swift in Sources */,
 				23D8A1C62B5C95AA003A0A4C /* ErrorTableViewCell.swift in Sources */,
 				23D8A1A52B5C0B4D003A0A4C /* NertworkProvider.swift in Sources */,
 				23D8A1B52B5C2619003A0A4C /* ImageProvider.swift in Sources */,
@@ -429,6 +447,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		23D8A1D02B5CAE4E003A0A4C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23D8A1CF2B5CAE4E003A0A4C /* en */,
+				23D8A1D12B5CAF0A003A0A4C /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -437,6 +464,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -486,7 +514,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = GithubUserListApp/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = NO;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -501,6 +529,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -544,7 +573,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = GithubUserListApp/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = NO;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

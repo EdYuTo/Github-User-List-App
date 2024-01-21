@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  GithubUserListApp
+
+  Created by Edson Yudi Toma on 20/01/24.
+  
+*/
+
+"retryButtonTitle" = "Retry";
+"errorAlertTitle" = "Something went wrong";

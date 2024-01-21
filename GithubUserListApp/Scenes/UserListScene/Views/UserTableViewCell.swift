@@ -9,7 +9,7 @@ import UIKit
 
 final class UserTableViewCell: UITableViewCell {
     // MARK: - Properties
-    static let reuseIdentifier = "UserTableViewCell"
+    static let reuseIdentifier = String(describing: UserTableViewCell.self)
     let iconSize: CGFloat = 64
 
     // MARK: - Views

@@ -174,11 +174,11 @@ extension UserListScreen: UserListDisplayProtocol {
     func displayError() {
         if modelList.count == 0 {
             let alert = UIAlertController(
-                title: "Something went wrong",
+                title: Localizable.errorAlertTitle.localized,
                 message: nil,
                 preferredStyle: .alert
             )
-            let action = UIAlertAction(title: "Retry", style: .default) { [weak self] _ in
+            let action = UIAlertAction(title: Localizable.retryButtonTitle.localized, style: .default) { [weak self] _ in
                 self?.interactor.fetchList()
             }
             alert.addAction(action)

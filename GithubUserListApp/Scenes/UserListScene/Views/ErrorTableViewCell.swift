@@ -9,12 +9,12 @@ import UIKit
 
 final class ErrorTableViewCell: UITableViewCell {
     // MARK: - Properties
-    static let reuseIdentifier = "ErrorTableViewCell"
+    static let reuseIdentifier = String(describing: ErrorTableViewCell.self)
 
     // MARK: - Views
     lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitle("retry", for: .normal)
+        button.setTitle(Localizable.retryButtonTitle.localized, for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.isUserInteractionEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
