@@ -10,7 +10,7 @@ import UIKit
 final class ErrorTableViewCell: UITableViewCell {
     // MARK: - Properties
     static let reuseIdentifier = "ErrorTableViewCell"
-    
+
     // MARK: - Views
     lazy var button: UIButton = {
         let button = UIButton()
@@ -20,7 +20,7 @@ final class ErrorTableViewCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     // MARK: - Methods
     func setup() {
         setupView()
@@ -32,7 +32,7 @@ extension ErrorTableViewCell: ViewCodeProtocol {
     func setupHierarchy() {
         addSubview(button)
     }
-    
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: centerXAnchor),

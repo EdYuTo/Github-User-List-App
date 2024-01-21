@@ -33,7 +33,7 @@ extension UserListInteractor: UserListInteractorProtocol {
             case let .success(response):
                 self?.lastId = response.last?.id ?? 0
                 self?.presenter.presentData(response)
-            case .failure(_):
+            case .failure:
                 self?.presenter.presentError()
             }
         }

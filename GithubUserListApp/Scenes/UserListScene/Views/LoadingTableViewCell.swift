@@ -24,7 +24,7 @@ final class LoadingTableViewCell: UITableViewCell {
         super.prepareForReuse()
         loadingView.startAnimating()
     }
-    
+
     // MARK: - Methods
     func setup() {
         setupView()

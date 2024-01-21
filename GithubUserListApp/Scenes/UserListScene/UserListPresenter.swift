@@ -32,7 +32,7 @@ extension UserListPresenter: UserListPresenterProtocol {
             self?.displayer?.displayData(data)
         }
     }
-    
+
     func presentError() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.displayer?.displayError()

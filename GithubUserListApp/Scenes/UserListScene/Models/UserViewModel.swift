@@ -9,7 +9,7 @@ enum UserViewModel: Equatable {
     case success(UserSuccess)
     case loading
     case error
-    
+
     static func == (lhs: UserViewModel, rhs: UserViewModel) -> Bool {
         switch (lhs, rhs) {
         case (.success, .success),

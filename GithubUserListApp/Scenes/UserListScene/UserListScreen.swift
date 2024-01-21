@@ -138,7 +138,7 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
         viewCell.setup()
         return viewCell
     }
-    
+
     private func loadErrorCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         guard let viewCell = tableView.dequeueReusableCell(
             withIdentifier: ErrorTableViewCell.reuseIdentifier,
@@ -170,7 +170,7 @@ extension UserListScreen: UserListDisplayProtocol {
             tableView.endUpdates()
         }
     }
-    
+
     func displayError() {
         if modelList.count == 0 {
             let alert = UIAlertController(
@@ -187,7 +187,7 @@ extension UserListScreen: UserListDisplayProtocol {
             replaceLastState(with: .error)
         }
     }
-    
+
     private func replaceLastState(with model: UserViewModel) {
         _ = modelList.popLast()
         modelList.append(model)

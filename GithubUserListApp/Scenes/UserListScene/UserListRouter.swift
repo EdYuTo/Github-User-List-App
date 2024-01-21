@@ -31,7 +31,7 @@ extension UserListRouter: UserListRouterProtocol {
         let userDetails = UserDetailsScreen()
         viewController?.navigationController?.pushViewController(userDetails, animated: true)
     }
-    
+
     func present(_ viewController: UIViewController) {
         self.viewController?.navigationController?.present(viewController, animated: true)
     }
