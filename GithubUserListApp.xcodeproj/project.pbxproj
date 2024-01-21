@@ -43,9 +43,10 @@
 		23D8A1E82B5D36E6003A0A4C /* UserRepoListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1E72B5D36E6003A0A4C /* UserRepoListRequest.swift */; };
 		23D8A1EA2B5D93E2003A0A4C /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1E92B5D93E1003A0A4C /* UserDetailsViewModel.swift */; };
 		23D8A1EC2B5D9492003A0A4C /* UserRepoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1EB2B5D9492003A0A4C /* UserRepoViewModel.swift */; };
-		23D8A1EE2B5DAA71003A0A4C /* UserDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1ED2B5DAA71003A0A4C /* UserDetailsCollectionViewCell.swift */; };
-		23D8A1F02B5DAADD003A0A4C /* UserDetailsLoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1EF2B5DAADD003A0A4C /* UserDetailsLoadingCollectionViewCell.swift */; };
-		23D8A1F22B5DAB2C003A0A4C /* UserDetailsErrorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1F12B5DAB2C003A0A4C /* UserDetailsErrorCollectionViewCell.swift */; };
+		23D8A1EE2B5DAA71003A0A4C /* UserDetailsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1ED2B5DAA71003A0A4C /* UserDetailsViewCell.swift */; };
+		23D8A1F52B5DAE47003A0A4C /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1F42B5DAE47003A0A4C /* AsyncImageView.swift */; };
+		23D8A1F72B5DC0D7003A0A4C /* FollowersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1F62B5DC0D7003A0A4C /* FollowersView.swift */; };
+		23D8A1FA2B5DC3CE003A0A4C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1F92B5DC3CE003A0A4C /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,9 +108,10 @@
 		23D8A1E72B5D36E6003A0A4C /* UserRepoListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepoListRequest.swift; sourceTree = "<group>"; };
 		23D8A1E92B5D93E1003A0A4C /* UserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewModel.swift; sourceTree = "<group>"; };
 		23D8A1EB2B5D9492003A0A4C /* UserRepoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepoViewModel.swift; sourceTree = "<group>"; };
-		23D8A1ED2B5DAA71003A0A4C /* UserDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
-		23D8A1EF2B5DAADD003A0A4C /* UserDetailsLoadingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsLoadingCollectionViewCell.swift; sourceTree = "<group>"; };
-		23D8A1F12B5DAB2C003A0A4C /* UserDetailsErrorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsErrorCollectionViewCell.swift; sourceTree = "<group>"; };
+		23D8A1ED2B5DAA71003A0A4C /* UserDetailsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewCell.swift; sourceTree = "<group>"; };
+		23D8A1F42B5DAE47003A0A4C /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		23D8A1F62B5DC0D7003A0A4C /* FollowersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersView.swift; sourceTree = "<group>"; };
+		23D8A1F92B5DC3CE003A0A4C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,9 +259,10 @@
 		23D8A1B32B5C2603003A0A4C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				23D8A1F82B5DC3BE003A0A4C /* Constants */,
+				23D8A1F32B5DADEA003A0A4C /* Views */,
 				23D8A1B42B5C2619003A0A4C /* ImageProvider.swift */,
 				23D8A1BB2B5C350D003A0A4C /* ViewCodeProtocol.swift */,
-				23D8A1C32B5C6AE0003A0A4C /* Spacing.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -268,8 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				23D8A1BF2B5C3CBE003A0A4C /* UserTableViewCell.swift */,
-				23D8A1C12B5C484B003A0A4C /* LoadingTableViewCell.swift */,
-				23D8A1C52B5C95AA003A0A4C /* ErrorTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,11 +300,29 @@
 		23D8A1DA2B5D274A003A0A4C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				23D8A1ED2B5DAA71003A0A4C /* UserDetailsCollectionViewCell.swift */,
-				23D8A1EF2B5DAADD003A0A4C /* UserDetailsLoadingCollectionViewCell.swift */,
-				23D8A1F12B5DAB2C003A0A4C /* UserDetailsErrorCollectionViewCell.swift */,
+				23D8A1ED2B5DAA71003A0A4C /* UserDetailsViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		23D8A1F32B5DADEA003A0A4C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				23D8A1C12B5C484B003A0A4C /* LoadingTableViewCell.swift */,
+				23D8A1C52B5C95AA003A0A4C /* ErrorTableViewCell.swift */,
+				23D8A1F42B5DAE47003A0A4C /* AsyncImageView.swift */,
+				23D8A1F62B5DC0D7003A0A4C /* FollowersView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		23D8A1F82B5DC3BE003A0A4C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				23D8A1C32B5C6AE0003A0A4C /* Spacing.swift */,
+				23D8A1F92B5DC3CE003A0A4C /* Image.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,11 +458,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				23D8A1D82B5CB2E4003A0A4C /* NetworkConstants.swift in Sources */,
+				23D8A1FA2B5DC3CE003A0A4C /* Image.swift in Sources */,
 				23D8A1B72B5C2F66003A0A4C /* UserListRequest.swift in Sources */,
 				23D8A1C22B5C484B003A0A4C /* LoadingTableViewCell.swift in Sources */,
 				23D8A1D62B5CAFDA003A0A4C /* Localizable.swift in Sources */,
 				23D8A1C62B5C95AA003A0A4C /* ErrorTableViewCell.swift in Sources */,
-				23D8A1EE2B5DAA71003A0A4C /* UserDetailsCollectionViewCell.swift in Sources */,
+				23D8A1EE2B5DAA71003A0A4C /* UserDetailsViewCell.swift in Sources */,
 				23D8A1A52B5C0B4D003A0A4C /* NertworkProvider.swift in Sources */,
 				23D8A1E22B5D3415003A0A4C /* UserDetailsResponse.swift in Sources */,
 				23D8A1DE2B5D2767003A0A4C /* UserDetailsInteractor.swift in Sources */,
@@ -451,9 +471,9 @@
 				23D8A1692B5BFDF6003A0A4C /* AppDelegate.swift in Sources */,
 				23D8A1C02B5C3CBE003A0A4C /* UserTableViewCell.swift in Sources */,
 				23D8A1E02B5D2777003A0A4C /* UserDetailsPresenter.swift in Sources */,
+				23D8A1F52B5DAE47003A0A4C /* AsyncImageView.swift in Sources */,
 				23D8A1BE2B5C3650003A0A4C /* UserViewModel.swift in Sources */,
 				23D8A1A72B5C1EEB003A0A4C /* UserListInteractor.swift in Sources */,
-				23D8A1F02B5DAADD003A0A4C /* UserDetailsLoadingCollectionViewCell.swift in Sources */,
 				23D8A1AC2B5C2502003A0A4C /* UserListResponse.swift in Sources */,
 				23D8A1B22B5C2577003A0A4C /* NetworkRequest.swift in Sources */,
 				23D8A1AE2B5C253F003A0A4C /* NertworkError.swift in Sources */,
@@ -461,13 +481,13 @@
 				23D8A1E62B5D36BE003A0A4C /* UserDetailsRequest.swift in Sources */,
 				23D8A1C42B5C6AE0003A0A4C /* Spacing.swift in Sources */,
 				23D8A1B92B5C318B003A0A4C /* UserListPresenter.swift in Sources */,
+				23D8A1F72B5DC0D7003A0A4C /* FollowersView.swift in Sources */,
 				23D8A1DC2B5D275A003A0A4C /* UserDetailsRouter.swift in Sources */,
 				23D8A1B02B5C2557003A0A4C /* HTTPMethod.swift in Sources */,
 				23D8A1E82B5D36E6003A0A4C /* UserRepoListRequest.swift in Sources */,
 				23D8A1A92B5C22C0003A0A4C /* UserListRouter.swift in Sources */,
 				23D8A1BC2B5C350D003A0A4C /* ViewCodeProtocol.swift in Sources */,
 				23D8A1E42B5D34C2003A0A4C /* UserRepoListResponse.swift in Sources */,
-				23D8A1F22B5DAB2C003A0A4C /* UserDetailsErrorCollectionViewCell.swift in Sources */,
 				23D8A1992B5BFEFD003A0A4C /* UserListScreen.swift in Sources */,
 				23D8A19F2B5C0239003A0A4C /* UserDetailsScreen.swift in Sources */,
 				23D8A1EA2B5D93E2003A0A4C /* UserDetailsViewModel.swift in Sources */,
