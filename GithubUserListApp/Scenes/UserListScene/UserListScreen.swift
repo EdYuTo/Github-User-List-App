@@ -43,7 +43,7 @@ final class UserListScreen: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLoad() {
         interactor.fetchList()
     }
 }
