@@ -15,6 +15,7 @@ final class UserDetailsInteractor {
     let userName: String
     let provider: NertworkProviderProcotol
     let presenter: UserDetailsPresenterProtocol
+    let pageSize = 30
     var page = 1
     var isLoading = false
 
@@ -28,19 +29,28 @@ final class UserDetailsInteractor {
 
 extension UserDetailsInteractor: UserDetailsInteractorProtocol {
     func fetchUserDetails() {
-        let userName = userName.replacingOccurrences(of: "@", with: String())
+        let userName = String(userName.dropFirst(1))
         let request = UserDetailsRequest(userName: userName)
-        provider.makeRequest(request) { (result: Result<UserDetailsResponse, Error>) in
-            debugPrint(">>>>>", result)
+        provider.makeRequest(request) { [weak self] (result: Result<UserDetailsResponse, Error>) in
+            switch result {
+            case .success(let success):
+                self?.presenter.presentUserDetails(success)
+            case .failure:
+                self?.presenter.presentRepoListError()
+            }
         }
-        presenter.presentUserDetails()
     }
 
     func fetchRepoList() {
-        let request = UserRepoListRequest(endpoint: reposUrl)
-        provider.makeRequest(request) { (result: Result<UserRepoListResponse, Error>) in
-            debugPrint(">>>>>", result)
+        let request = UserRepoListRequest(endpoint: reposUrl, nextPage: page, pageSize: pageSize)
+        provider.makeRequest(request) { [weak self] (result: Result<UserRepoListResponse, Error>) in
+            switch result {
+            case .success(let success):
+                self?.page += 1
+                self?.presenter.presentRepoList(success)
+            case .failure:
+                self?.presenter.presentRepoListError()
+            }
         }
-        presenter.presentRepoList()
     }
 }

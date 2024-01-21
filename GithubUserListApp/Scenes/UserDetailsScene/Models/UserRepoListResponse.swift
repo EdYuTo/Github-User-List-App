@@ -13,6 +13,7 @@ struct UserRepoResponse: Decodable {
     let cloneUrl: String
     let stargazersCount: Int
     let language: String?
+    let fork: Bool
 }
 
 typealias UserRepoListResponse = [UserRepoResponse]

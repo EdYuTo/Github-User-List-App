@@ -9,6 +9,15 @@ import Foundation
 
 struct UserRepoListRequest: NetworkRequest {
     var endpoint: String
+    var nextPage: Int
+    var pageSize: Int
+
+    var queryParams: [String: String]? {
+        [
+            Constants.pageParam: "\(nextPage)",
+            Constants.pageSizeParam: "\(pageSize)"
+        ]
+    }
 
     var headers: [String: String]? {
         [
@@ -21,5 +30,12 @@ struct UserRepoListRequest: NetworkRequest {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
+    }
+}
+
+extension UserRepoListRequest {
+    enum Constants {
+        static let pageParam = "page"
+        static let pageSizeParam = "per_page"
     }
 }
