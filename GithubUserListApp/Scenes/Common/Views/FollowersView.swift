@@ -13,31 +13,11 @@ final class FollowersView: UIView {
     var followingCount: Int
 
     // MARK: - Views
-    lazy var iconView: UIView = {
-        let image = Image.person.value?.withRenderingMode(.alwaysTemplate)
-        let view = UIImageView(image: image)
-        if traitCollection.userInterfaceStyle == .light {
-            view.tintColor = .black
-        } else {
-            view.tintColor = .white
-        }
+    lazy var iconLabelView: IconLabelView = {
+        let view = IconLabelView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.setup(image: Image.person.value)
         return view
-    }()
-
-    lazy var labelView: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [iconView, labelView])
-        stackView.spacing = Spacing.x8.value
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
     }()
 
     // MARK: - Life cycle
@@ -64,15 +44,15 @@ final class FollowersView: UIView {
 // MARK: - ViewCodeProtocol
 extension FollowersView: ViewCodeProtocol {
     func setupHierarchy() {
-        addSubview(mainStackView)
+        addSubview(iconLabelView)
     }
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            mainStackView.topAnchor.constraint(equalTo: topAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            iconLabelView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            iconLabelView.topAnchor.constraint(equalTo: topAnchor),
+            iconLabelView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            iconLabelView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 
@@ -90,6 +70,6 @@ extension FollowersView: ViewCodeProtocol {
         attributedText.append(NSAttributedString(string: Localizable.followingText.localized, attributes: [
             .font: UIFont.systemFont(ofSize: UIFont.systemFontSize)
         ]))
-        labelView.attributedText = attributedText
+        iconLabelView.labelView.attributedText = attributedText
     }
 }
