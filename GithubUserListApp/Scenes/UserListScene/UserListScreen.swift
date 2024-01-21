@@ -165,8 +165,8 @@ extension UserListScreen: UserListDisplayProtocol {
                 IndexPath(row: row, section: 0)
             }
             tableView.beginUpdates()
-            tableView.deleteRows(at: [loadingIndex], with: .automatic)
-            tableView.insertRows(at: newRows, with: .automatic)
+            tableView.deleteRows(at: [loadingIndex], with: .top)
+            tableView.insertRows(at: newRows, with: .top)
             tableView.endUpdates()
         }
     }
@@ -192,6 +192,6 @@ extension UserListScreen: UserListDisplayProtocol {
         _ = modelList.popLast()
         modelList.append(model)
         let lastIndex = IndexPath(row: modelList.count-1, section: .zero)
-        tableView.reloadRows(at: [lastIndex], with: .automatic)
+        tableView.reloadRows(at: [lastIndex], with: .top)
     }
 }
