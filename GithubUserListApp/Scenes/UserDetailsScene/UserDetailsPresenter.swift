@@ -29,15 +29,21 @@ extension UserDetailsPresenter: UserDetailsPresenterProtocol {
             followersCount: response.followers,
             followingCount: response.following
         )
-        displayer?.displayUserDetails(.success(viewModel))
+        DispatchQueue.main.async { [weak self] in
+            self?.displayer?.displayUserDetails(.success(viewModel))
+        }
     }
 
     func presentUserDetailsLoading() {
-        displayer?.displayUserDetails(.loading)
+        DispatchQueue.main.async { [weak self] in
+            self?.displayer?.displayUserDetails(.loading)
+        }
     }
 
     func presentUserDetailsError() {
-        displayer?.displayUserDetails(.error)
+        DispatchQueue.main.async { [weak self] in
+            self?.displayer?.displayUserDetails(.error)
+        }
     }
 
     func presentRepoList(_ response: UserRepoListResponse) {

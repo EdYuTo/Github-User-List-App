@@ -29,6 +29,7 @@ final class UserDetailsInteractor {
 
 extension UserDetailsInteractor: UserDetailsInteractorProtocol {
     func fetchUserDetails() {
+        presenter.presentUserDetailsLoading()
         let userName = String(userName.dropFirst(1))
         let request = UserDetailsRequest(userName: userName)
         provider.makeRequest(request) { [weak self] (result: Result<UserDetailsResponse, Error>) in
@@ -36,12 +37,13 @@ extension UserDetailsInteractor: UserDetailsInteractorProtocol {
             case .success(let success):
                 self?.presenter.presentUserDetails(success)
             case .failure:
-                self?.presenter.presentRepoListError()
+                self?.presenter.presentUserDetailsError()
             }
         }
     }
 
     func fetchRepoList() {
+        presenter.presentRepoListLoading()
         let request = UserRepoListRequest(endpoint: reposUrl, nextPage: page, pageSize: pageSize)
         provider.makeRequest(request) { [weak self] (result: Result<UserRepoListResponse, Error>) in
             switch result {

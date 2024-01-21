@@ -21,12 +21,16 @@ final class UserDetailsScreen: UIViewController {
     var repoList = [UserRepoSuccess]()
 
     // MARK: - Views
-    lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.register(UserDetailsViewCell.self, forCellReuseIdentifier: UserDetailsViewCell.reuseIdentifier)
+        tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.reuseIdentifier)
+        tableView.register(ErrorTableViewCell.self, forCellReuseIdentifier: ErrorTableViewCell.reuseIdentifier)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
 
     // MARK: - Life cycle
@@ -51,44 +55,81 @@ final class UserDetailsScreen: UIViewController {
 // MARK: - ViewCodeProtocol
 extension UserDetailsScreen: ViewCodeProtocol {
     func setupHierarchy() {
-        view.addSubview(collectionView)
+        view.addSubview(tableView)
     }
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
 
-extension UserDetailsScreen: UICollectionViewDelegate, UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return detailsModel != nil ? 1 : 0
         case 1:
-            return (detailsModel != nil ? 1 : 0) + repoList.count
+            return repoList.count + (repoModel != nil ? 1 : 0)
         default:
             return 0
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            return UICollectionViewCell()
+            return loadUserDetails(tableView, indexPath)
         case 1:
-            return UICollectionViewCell()
+            return UITableViewCell()
         default:
-            return UICollectionViewCell()
+            return UITableViewCell()
         }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0, case .error = detailsModel {
+            interactor.fetchUserDetails()
+        }
+    }
+
+    private func loadUserDetails(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell?
+        switch detailsModel {
+        case let .success(details):
+            let userCell = tableView.dequeueReusableCell(withIdentifier: UserDetailsViewCell.reuseIdentifier, for: indexPath) as? UserDetailsViewCell
+            userCell?.setup(details)
+            userCell?.selectionStyle = .none
+            cell = userCell
+        case .loading:
+            let loadingCell = tableView.dequeueReusableCell(
+                withIdentifier: LoadingTableViewCell.reuseIdentifier,
+                for: indexPath
+            ) as? LoadingTableViewCell
+            loadingCell?.setup()
+            loadingCell?.selectionStyle = .none
+            cell = loadingCell
+        case .error:
+            let errorCell = tableView.dequeueReusableCell(
+                withIdentifier: ErrorTableViewCell.reuseIdentifier,
+                for: indexPath
+            ) as? ErrorTableViewCell
+            errorCell?.setup()
+            cell = errorCell
+        default:
+            break
+        }
+        return cell ?? UITableViewCell()
     }
 }
 
@@ -96,7 +137,7 @@ extension UserDetailsScreen: UICollectionViewDelegate, UICollectionViewDataSourc
 extension UserDetailsScreen: UserDetailsDisplayProtocol {
     func displayUserDetails(_ details: UserDetailsViewModel) {
         detailsModel = details
-        collectionView.reloadSections(.init(integer: 0))
+        tableView.reloadSections(.init(integer: 0), with: .fade)
     }
 
     func displayRepoList(_ repoList: UserRepoViewModel) {
