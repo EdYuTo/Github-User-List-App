@@ -9,6 +9,7 @@ import UIKit
 
 protocol UserListRouterProtocol: AnyObject {
     func openDetails(_ repoUrl: String)
+    func present(_ viewController: UIViewController)
 }
 
 final class UserListRouter {
@@ -27,8 +28,11 @@ final class UserListRouter {
 
 extension UserListRouter: UserListRouterProtocol {
     func openDetails(_ repoUrl: String) {
-        debugPrint(repoUrl)
         let userDetails = UserDetailsScreen()
         viewController?.navigationController?.pushViewController(userDetails, animated: true)
+    }
+    
+    func present(_ viewController: UIViewController) {
+        self.viewController?.navigationController?.present(viewController, animated: true)
     }
 }

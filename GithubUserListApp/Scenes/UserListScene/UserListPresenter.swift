@@ -9,6 +9,7 @@ import Foundation
 
 protocol UserListPresenterProtocol {
     func presentData(_ response: UserListResponse)
+    func presentError()
 }
 
 final class UserListPresenter {
@@ -17,15 +18,24 @@ final class UserListPresenter {
 
 extension UserListPresenter: UserListPresenterProtocol {
     func presentData(_ response: UserListResponse) {
-        let data = response.map { userResponse in
-            UserViewModel(
-                userName: "@\(userResponse.login)",
-                avatarUrl: userResponse.avatarUrl,
-                reposUrl: userResponse.reposUrl
+        var data: [UserViewModel] = response.map { userResponse in
+            UserViewModel.success(
+                UserSuccess(
+                    userName: "@\(userResponse.login)",
+                    avatarUrl: userResponse.avatarUrl,
+                    reposUrl: userResponse.reposUrl
+                )
             )
         }
+        data.append(UserViewModel.loading)
         DispatchQueue.main.async { [weak self] in
             self?.displayer?.displayData(data)
+        }
+    }
+    
+    func presentError() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.displayer?.displayError()
         }
     }
 }

@@ -11,7 +11,6 @@ final class UserTableViewCell: UITableViewCell {
     // MARK: - Properties
     static let reuseIdentifier = "UserTableViewCell"
     let iconSize: CGFloat = 64
-    var model: UserViewModel!
 
     // MARK: - Views
     lazy var avatar: UIView = {
@@ -58,8 +57,7 @@ final class UserTableViewCell: UITableViewCell {
     }
 
     // MARK: Methods
-    func configure(_ model: UserViewModel) {
-        self.model = model
+    func setup(_ model: UserSuccess) {
         userName.text = model.userName
         setupView()
         ImageProvider.getImage(url: model.avatarUrl) { uiImage in

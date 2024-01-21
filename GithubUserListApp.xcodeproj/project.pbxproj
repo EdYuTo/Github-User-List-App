@@ -30,6 +30,7 @@
 		23D8A1C02B5C3CBE003A0A4C /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1BF2B5C3CBE003A0A4C /* UserTableViewCell.swift */; };
 		23D8A1C22B5C484B003A0A4C /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1C12B5C484B003A0A4C /* LoadingTableViewCell.swift */; };
 		23D8A1C42B5C6AE0003A0A4C /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1C32B5C6AE0003A0A4C /* Spacing.swift */; };
+		23D8A1C62B5C95AA003A0A4C /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1C52B5C95AA003A0A4C /* ErrorTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		23D8A1BF2B5C3CBE003A0A4C /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		23D8A1C12B5C484B003A0A4C /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		23D8A1C32B5C6AE0003A0A4C /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		23D8A1C52B5C95AA003A0A4C /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			children = (
 				23D8A1BF2B5C3CBE003A0A4C /* UserTableViewCell.swift */,
 				23D8A1C12B5C484B003A0A4C /* LoadingTableViewCell.swift */,
+				23D8A1C52B5C95AA003A0A4C /* ErrorTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 			files = (
 				23D8A1B72B5C2F66003A0A4C /* UserListRequest.swift in Sources */,
 				23D8A1C22B5C484B003A0A4C /* LoadingTableViewCell.swift in Sources */,
+				23D8A1C62B5C95AA003A0A4C /* ErrorTableViewCell.swift in Sources */,
 				23D8A1A52B5C0B4D003A0A4C /* NertworkProvider.swift in Sources */,
 				23D8A1B52B5C2619003A0A4C /* ImageProvider.swift in Sources */,
 				23D8A1692B5BFDF6003A0A4C /* AppDelegate.swift in Sources */,

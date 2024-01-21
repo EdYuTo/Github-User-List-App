@@ -9,6 +9,7 @@ import UIKit
 
 protocol UserListDisplayProtocol: AnyObject {
     func displayData(_ userList: [UserViewModel])
+    func displayError()
 }
 
 final class UserListScreen: UIViewController {
@@ -24,6 +25,7 @@ final class UserListScreen: UIViewController {
         tableView.dataSource = self
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.reuseIdentifier)
         tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.reuseIdentifier)
+        tableView.register(ErrorTableViewCell.self, forCellReuseIdentifier: ErrorTableViewCell.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -65,24 +67,43 @@ extension UserListScreen: ViewCodeProtocol {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        modelList.count + 1
+        modelList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < modelList.count {
-            return loadUserCell(tableView, indexPath)
-        } else {
-            return loadLoadingCell(tableView, indexPath)
+            switch modelList[indexPath.row] {
+            case let .success(model):
+                return loadUserCell(tableView, indexPath, model)
+            case .loading:
+                return loadLoadingCell(tableView, indexPath)
+            case .error:
+                return loadErrorCell(tableView, indexPath)
+            }
         }
+        return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard indexPath.row < modelList.count else { return }
-        router.openDetails(modelList[indexPath.row].reposUrl)
+        guard indexPath.row < modelList.count else {
+            return
+        }
+        switch modelList[indexPath.row] {
+        case let .success(model):
+            router.openDetails(model.reposUrl)
+        case .error:
+            replaceLastState(with: .loading)
+            interactor.fetchList()
+        default:
+            break
+        }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard modelList.last != UserViewModel.error else {
+            return
+        }
         let height = scrollView.frame.size.height
         let contentYOffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYOffset
@@ -92,22 +113,41 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    private func loadUserCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+    private func loadUserCell(
+        _ tableView: UITableView,
+        _ indexPath: IndexPath,
+        _ model: UserSuccess
+    ) -> UITableViewCell {
         guard let viewCell = tableView.dequeueReusableCell(
             withIdentifier: UserTableViewCell.reuseIdentifier,
             for: indexPath
         ) as? UserTableViewCell else {
             return UITableViewCell()
         }
-        viewCell.configure(modelList[indexPath.row])
+        viewCell.setup(model)
         return viewCell
     }
 
     private func loadLoadingCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(
+        guard let viewCell = tableView.dequeueReusableCell(
             withIdentifier: LoadingTableViewCell.reuseIdentifier,
             for: indexPath
-        )
+        ) as? LoadingTableViewCell else {
+            return UITableViewCell()
+        }
+        viewCell.setup()
+        return viewCell
+    }
+    
+    private func loadErrorCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        guard let viewCell = tableView.dequeueReusableCell(
+            withIdentifier: ErrorTableViewCell.reuseIdentifier,
+            for: indexPath
+        ) as? ErrorTableViewCell else {
+            return UITableViewCell()
+        }
+        viewCell.setup()
+        return viewCell
     }
 }
 
@@ -115,18 +155,43 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
 extension UserListScreen: UserListDisplayProtocol {
     func displayData(_ userList: [UserViewModel]) {
         let size = modelList.count
+        _ = modelList.popLast()
         modelList.append(contentsOf: userList)
         if size == 0 {
             tableView.reloadData()
         } else {
-            let loadingIndex = IndexPath(row: size, section: .zero)
-            let newRows = (size+1...modelList.count).map { row in
+            let loadingIndex = IndexPath(row: size-1, section: .zero)
+            let newRows = (size-1..<modelList.count).map { row in
                 IndexPath(row: row, section: 0)
             }
             tableView.beginUpdates()
-            tableView.reloadRows(at: [loadingIndex], with: .automatic)
+            tableView.deleteRows(at: [loadingIndex], with: .automatic)
             tableView.insertRows(at: newRows, with: .automatic)
             tableView.endUpdates()
         }
+    }
+    
+    func displayError() {
+        if modelList.count == 0 {
+            let alert = UIAlertController(
+                title: "Something went wrong",
+                message: nil,
+                preferredStyle: .alert
+            )
+            let action = UIAlertAction(title: "Retry", style: .default) { [weak self] _ in
+                self?.interactor.fetchList()
+            }
+            alert.addAction(action)
+            router.present(alert)
+        } else {
+            replaceLastState(with: .error)
+        }
+    }
+    
+    private func replaceLastState(with model: UserViewModel) {
+        _ = modelList.popLast()
+        modelList.append(model)
+        let lastIndex = IndexPath(row: modelList.count-1, section: .zero)
+        tableView.reloadRows(at: [lastIndex], with: .automatic)
     }
 }
