@@ -10,7 +10,7 @@ import UIKit
 final class UserTableViewCell: UITableViewCell {
     // MARK: - Properties
     static let reuseIdentifier = String(describing: UserTableViewCell.self)
-    let iconSize: CGFloat = 64
+    let iconSize: CGFloat = Spacing.x64.value
 
     // MARK: - Views
     lazy var avatar: UIView = {
