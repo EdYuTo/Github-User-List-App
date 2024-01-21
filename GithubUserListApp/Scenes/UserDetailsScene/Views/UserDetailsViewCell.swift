@@ -30,7 +30,6 @@ final class UserDetailsViewCell: UITableViewCell {
 
     lazy var userNameView: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
