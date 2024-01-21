@@ -33,6 +33,7 @@
 		23D8A1C62B5C95AA003A0A4C /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1C52B5C95AA003A0A4C /* ErrorTableViewCell.swift */; };
 		23D8A1CE2B5CAE4E003A0A4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23D8A1D02B5CAE4E003A0A4C /* Localizable.strings */; };
 		23D8A1D62B5CAFDA003A0A4C /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1D52B5CAFDA003A0A4C /* Localizable.swift */; };
+		23D8A1D82B5CB2E4003A0A4C /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1D72B5CB2E4003A0A4C /* NetworkConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		23D8A1CF2B5CAE4E003A0A4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23D8A1D12B5CAF0A003A0A4C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		23D8A1D52B5CAFDA003A0A4C /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		23D8A1D72B5CB2E4003A0A4C /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				23D8A1AD2B5C253F003A0A4C /* NertworkError.swift */,
 				23D8A1AF2B5C2557003A0A4C /* HTTPMethod.swift */,
 				23D8A1B12B5C2577003A0A4C /* NetworkRequest.swift */,
+				23D8A1D72B5CB2E4003A0A4C /* NetworkConstants.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23D8A1D82B5CB2E4003A0A4C /* NetworkConstants.swift in Sources */,
 				23D8A1B72B5C2F66003A0A4C /* UserListRequest.swift in Sources */,
 				23D8A1C22B5C484B003A0A4C /* LoadingTableViewCell.swift in Sources */,
 				23D8A1D62B5CAFDA003A0A4C /* Localizable.swift in Sources */,
