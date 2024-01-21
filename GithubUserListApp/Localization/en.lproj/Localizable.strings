@@ -8,3 +8,5 @@
 
 "retryButtonTitle" = "Retry";
 "errorAlertTitle" = "Something went wrong";
+"followingText" = "following";
+"followersText" = "followers";

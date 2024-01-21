@@ -15,6 +15,8 @@ import Foundation
 enum Localizable: String {
     case retryButtonTitle
     case errorAlertTitle
+    case followingText
+    case followersText
 
     var localized: String {
         NSLocalizedString(rawValue, comment: String())
