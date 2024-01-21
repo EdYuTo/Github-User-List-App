@@ -9,11 +9,11 @@ import UIKit
 
 enum Image: String {
     case person = "Person"
-    
+
     var bundle: Bundle {
         Bundle(for: BundleHolder.self)
     }
-    
+
     var value: UIImage? {
         UIImage(named: rawValue, in: bundle, compatibleWith: nil)
     }
