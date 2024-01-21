@@ -82,13 +82,13 @@ extension FollowersView: ViewCodeProtocol {
             .font: UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
         ]))
         attributedText.append(NSAttributedString(string: "followers - ", attributes: [
-            .font: UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+            .font: UIFont.systemFont(ofSize: UIFont.systemFontSize)
         ]))
         attributedText.append(NSAttributedString(string: "\(followingCount) ", attributes: [
             .font: UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
         ]))
         attributedText.append(NSAttributedString(string: "following", attributes: [
-            .font: UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+            .font: UIFont.systemFont(ofSize: UIFont.systemFontSize)
         ]))
         labelView.attributedText = attributedText
     }
