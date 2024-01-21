@@ -7,7 +7,7 @@
 
 enum NetworkConstants {
     enum Endpoint {
-            static let users = "https://api.github.com/users"
+        static let users = "https://api.github.com/users"
     }
 
     enum Header {

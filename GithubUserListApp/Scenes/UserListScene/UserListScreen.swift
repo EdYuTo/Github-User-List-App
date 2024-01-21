@@ -91,7 +91,7 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
         }
         switch modelList[indexPath.row] {
         case let .success(model):
-            router.openDetails(model.reposUrl)
+            router.openDetails(userName: model.userName, reposUrl: model.reposUrl)
         case .error:
             replaceLastState(with: .loading)
             interactor.fetchList()

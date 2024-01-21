@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UserListRouterProtocol: AnyObject {
-    func openDetails(_ reposUrl: String)
+    func openDetails(userName: String, reposUrl: String)
     func present(_ viewController: UIViewController)
 }
 
@@ -27,8 +27,8 @@ final class UserListRouter {
 }
 
 extension UserListRouter: UserListRouterProtocol {
-    func openDetails(_ reposUrl: String) {
-        let userDetails = UserDetailsRouter().setup(reposUrl: reposUrl)
+    func openDetails(userName: String, reposUrl: String) {
+        let userDetails = UserDetailsRouter().setup(userName: userName, reposUrl: reposUrl)
         viewController?.navigationController?.pushViewController(userDetails, animated: true)
     }
 

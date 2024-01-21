@@ -14,10 +14,15 @@ protocol UserDetailsRouterProtocol {
 final class UserDetailsRouter {
     weak var viewController: UserDetailsScreen?
 
-    func setup(reposUrl: String) -> UIViewController {
+    func setup(userName: String, reposUrl: String) -> UIViewController {
         let provider = NertworkProvider()
         let presenter = UserDetailsPresenter()
-        let interactor = UserDetailsInteractor(reposUrl: reposUrl, provider: provider, presenter: presenter)
+        let interactor = UserDetailsInteractor(
+            userName: userName,
+            reposUrl: reposUrl,
+            provider: provider,
+            presenter: presenter
+        )
         let viewController = UserDetailsScreen(interactor: interactor, router: self)
         presenter.displayer = viewController
         self.viewController = viewController

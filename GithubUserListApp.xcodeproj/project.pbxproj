@@ -37,6 +37,10 @@
 		23D8A1DC2B5D275A003A0A4C /* UserDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1DB2B5D275A003A0A4C /* UserDetailsRouter.swift */; };
 		23D8A1DE2B5D2767003A0A4C /* UserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1DD2B5D2767003A0A4C /* UserDetailsInteractor.swift */; };
 		23D8A1E02B5D2777003A0A4C /* UserDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1DF2B5D2777003A0A4C /* UserDetailsPresenter.swift */; };
+		23D8A1E22B5D3415003A0A4C /* UserDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1E12B5D3415003A0A4C /* UserDetailsResponse.swift */; };
+		23D8A1E42B5D34C2003A0A4C /* UserRepoListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1E32B5D34C2003A0A4C /* UserRepoListResponse.swift */; };
+		23D8A1E62B5D36BE003A0A4C /* UserDetailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1E52B5D36BE003A0A4C /* UserDetailsRequest.swift */; };
+		23D8A1E82B5D36E6003A0A4C /* UserRepoListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1E72B5D36E6003A0A4C /* UserRepoListRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +96,10 @@
 		23D8A1DB2B5D275A003A0A4C /* UserDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRouter.swift; sourceTree = "<group>"; };
 		23D8A1DD2B5D2767003A0A4C /* UserDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsInteractor.swift; sourceTree = "<group>"; };
 		23D8A1DF2B5D2777003A0A4C /* UserDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsPresenter.swift; sourceTree = "<group>"; };
+		23D8A1E12B5D3415003A0A4C /* UserDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsResponse.swift; sourceTree = "<group>"; };
+		23D8A1E32B5D34C2003A0A4C /* UserRepoListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepoListResponse.swift; sourceTree = "<group>"; };
+		23D8A1E52B5D36BE003A0A4C /* UserDetailsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRequest.swift; sourceTree = "<group>"; };
+		23D8A1E72B5D36E6003A0A4C /* UserRepoListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepoListRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +276,10 @@
 		23D8A1D92B5D2744003A0A4C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				23D8A1E12B5D3415003A0A4C /* UserDetailsResponse.swift */,
+				23D8A1E32B5D34C2003A0A4C /* UserRepoListResponse.swift */,
+				23D8A1E52B5D36BE003A0A4C /* UserDetailsRequest.swift */,
+				23D8A1E72B5D36E6003A0A4C /* UserRepoListRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -417,6 +429,7 @@
 				23D8A1D62B5CAFDA003A0A4C /* Localizable.swift in Sources */,
 				23D8A1C62B5C95AA003A0A4C /* ErrorTableViewCell.swift in Sources */,
 				23D8A1A52B5C0B4D003A0A4C /* NertworkProvider.swift in Sources */,
+				23D8A1E22B5D3415003A0A4C /* UserDetailsResponse.swift in Sources */,
 				23D8A1DE2B5D2767003A0A4C /* UserDetailsInteractor.swift in Sources */,
 				23D8A1B52B5C2619003A0A4C /* ImageProvider.swift in Sources */,
 				23D8A1692B5BFDF6003A0A4C /* AppDelegate.swift in Sources */,
@@ -427,12 +440,15 @@
 				23D8A1AC2B5C2502003A0A4C /* UserListResponse.swift in Sources */,
 				23D8A1B22B5C2577003A0A4C /* NetworkRequest.swift in Sources */,
 				23D8A1AE2B5C253F003A0A4C /* NertworkError.swift in Sources */,
+				23D8A1E62B5D36BE003A0A4C /* UserDetailsRequest.swift in Sources */,
 				23D8A1C42B5C6AE0003A0A4C /* Spacing.swift in Sources */,
 				23D8A1B92B5C318B003A0A4C /* UserListPresenter.swift in Sources */,
 				23D8A1DC2B5D275A003A0A4C /* UserDetailsRouter.swift in Sources */,
 				23D8A1B02B5C2557003A0A4C /* HTTPMethod.swift in Sources */,
+				23D8A1E82B5D36E6003A0A4C /* UserRepoListRequest.swift in Sources */,
 				23D8A1A92B5C22C0003A0A4C /* UserListRouter.swift in Sources */,
 				23D8A1BC2B5C350D003A0A4C /* ViewCodeProtocol.swift in Sources */,
+				23D8A1E42B5D34C2003A0A4C /* UserRepoListResponse.swift in Sources */,
 				23D8A1992B5BFEFD003A0A4C /* UserListScreen.swift in Sources */,
 				23D8A19F2B5C0239003A0A4C /* UserDetailsScreen.swift in Sources */,
 			);
