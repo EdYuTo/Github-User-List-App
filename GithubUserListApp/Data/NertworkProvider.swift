@@ -18,36 +18,39 @@ final class NertworkProvider: NertworkProviderProcotol {
     func makeRequest(_ request: NetworkRequest, completion: @escaping Completion<Data, Error>) {
         do {
             let urlRequest = try makeRequest(with: request)
-            let task = URLSession.shared.dataTask(with: urlRequest) { data, urlResponse, error in
+            let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, urlResponse, error in
                 if let error = error {
-                    return completion(.failure(error))
+                    self?.complete(completion, with: .failure(error))
+                    return
                 }
                 if let urlResponse = urlResponse as? HTTPURLResponse, urlResponse.statusCode != 200 {
-                    return completion(.failure(NertworkError.unknown))
+                    self?.complete(completion, with: .failure(NertworkError.unknown))
+                    return
                 }
                 guard let data = data else {
-                    return completion(.failure(NertworkError.emptyResponse))
+                    self?.complete(completion, with: .failure(NertworkError.emptyResponse))
+                    return
                 }
-                completion(.success(data))
+                self?.complete(completion, with: .success(data))
             }
             task.resume()
         } catch {
-            completion(.failure(error))
+            complete(completion, with: .failure(error))
         }
     }
 
     func makeRequest<T>(_ request: NetworkRequest, completion: @escaping Completion<T, Error>) {
-        makeRequest(request) { result in
+        makeRequest(request) { [weak self] result in
             switch result {
             case let .success(data):
                 do {
                     let decodedResponse = try request.decoder.decode(T.self, from: data)
-                    completion(.success(decodedResponse))
+                    self?.complete(completion, with: .success(decodedResponse))
                 } catch {
-                    completion(.failure(NertworkError.decodingError(error.localizedDescription)))
+                    self?.complete(completion, with: .failure(NertworkError.decodingError(error.localizedDescription)))
                 }
             case let .failure(error):
-                completion(.failure(error))
+                self?.complete(completion, with: .failure(error))
             }
         }
     }
@@ -72,5 +75,14 @@ final class NertworkProvider: NertworkProviderProcotol {
         }
 
         return urlRequest
+    }
+
+    private func complete<T: Decodable, E: Error>(
+        _ completion: @escaping Completion<T, E>,
+        with result: Result<T, E>
+    ) {
+        DispatchQueue.main.async {
+            completion(result)
+        }
     }
 }

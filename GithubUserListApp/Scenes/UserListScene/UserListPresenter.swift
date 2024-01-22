@@ -30,14 +30,10 @@ extension UserListPresenter: UserListPresenterProtocol {
         if !data.isEmpty {
             data.append(UserViewModel.loading)
         }
-        DispatchQueue.main.async { [weak self] in
-            self?.displayer?.displayData(data)
-        }
+        displayer?.displayData(data)
     }
 
     func presentError() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.displayer?.displayError()
-        }
+        displayer?.displayError()
     }
 }

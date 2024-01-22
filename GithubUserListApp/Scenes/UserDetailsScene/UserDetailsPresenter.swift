@@ -28,21 +28,15 @@ extension UserDetailsPresenter: UserDetailsPresenterProtocol {
             followersCount: response.followers,
             followingCount: response.following
         )
-        DispatchQueue.main.async { [weak self] in
-            self?.displayer?.displayUserDetails(.success(viewModel))
-        }
+        displayer?.displayUserDetails(.success(viewModel))
     }
 
     func presentUserDetailsLoading() {
-        DispatchQueue.main.async { [weak self] in
-            self?.displayer?.displayUserDetails(.loading)
-        }
+        displayer?.displayUserDetails(.loading)
     }
 
     func presentUserDetailsError() {
-        DispatchQueue.main.async { [weak self] in
-            self?.displayer?.displayUserDetails(.error)
-        }
+        displayer?.displayUserDetails(.error)
     }
 
     func presentRepoList(_ response: UserRepoListResponse) {
@@ -63,14 +57,10 @@ extension UserDetailsPresenter: UserDetailsPresenterProtocol {
         if !viewModel.isEmpty {
             viewModel.append(.loading)
         }
-        DispatchQueue.main.async { [weak self] in
-            self?.displayer?.displayRepoList(viewModel)
-        }
+        displayer?.displayRepoList(viewModel)
     }
 
     func presentRepoListError() {
-        DispatchQueue.main.async { [weak self] in
-            self?.displayer?.displayRepoList([.error])
-        }
+        displayer?.displayRepoList([.error])
     }
 }

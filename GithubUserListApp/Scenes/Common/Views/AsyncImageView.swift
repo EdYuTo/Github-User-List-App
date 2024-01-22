@@ -45,11 +45,9 @@ final class AsyncImageView: UIImageView {
 
     func startDownload(url: String) {
         startLoading()
-        ImageProvider.getImage(url: url) { uiImage in
-            DispatchQueue.main.async { [weak self] in
-                self?.iconView.image = uiImage
-                self?.updateMainView(with: self?.iconView)
-            }
+        ImageProvider.getImage(url: url) { [weak self] uiImage in
+            self?.iconView.image = uiImage
+            self?.updateMainView(with: self?.iconView)
         }
     }
 
