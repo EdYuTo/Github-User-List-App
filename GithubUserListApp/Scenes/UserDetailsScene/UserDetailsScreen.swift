@@ -9,7 +9,7 @@ import UIKit
 
 protocol UserDetailsDisplayProtocol: AnyObject {
     func displayUserDetails(_ details: UserDetailsViewModel)
-    func displayRepoList(_ model: UserRepoViewModel)
+    func displayRepoList(_ model: [UserRepoViewModel])
 }
 
 final class UserDetailsScreen: UIViewController {
@@ -17,8 +17,7 @@ final class UserDetailsScreen: UIViewController {
     let interactor: UserDetailsInteractorProtocol
     let router: UserDetailsRouterProtocol
     var detailsModel: UserDetailsViewModel?
-    var repoModel: UserRepoViewModel?
-    var repoList = [UserRepoSuccess]()
+    var repoList = [UserRepoViewModel]()
 
     // MARK: - Views
     lazy var tableView: UITableView = {
@@ -26,6 +25,7 @@ final class UserDetailsScreen: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UserDetailsViewCell.self, forCellReuseIdentifier: UserDetailsViewCell.reuseIdentifier)
+        tableView.register(UserRepoViewCell.self, forCellReuseIdentifier: UserRepoViewCell.reuseIdentifier)
         tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.reuseIdentifier)
         tableView.register(ErrorTableViewCell.self, forCellReuseIdentifier: ErrorTableViewCell.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,15 +70,15 @@ extension UserDetailsScreen: ViewCodeProtocol {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        Sections.allCases.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case Sections.details.rawValue:
             return detailsModel != nil ? 1 : 0
-        case 1:
-            return repoList.count + (repoModel != nil ? 1 : 0)
+        case Sections.repos.rawValue:
+            return repoList.count
         default:
             return 0
         }
@@ -86,10 +86,10 @@ extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
+        case Sections.details.rawValue:
             return loadUserDetails(tableView, indexPath)
-        case 1:
-            return UITableViewCell()
+        case Sections.repos.rawValue:
+            return loadRepoList(tableView, indexPath)
         default:
             return UITableViewCell()
         }
@@ -97,12 +97,21 @@ extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0, case .error = detailsModel {
+        if indexPath.section == Sections.details.rawValue, case .error = detailsModel {
             interactor.fetchUserDetails()
-        } else if case .error = repoModel {
-            interactor.fetchRepoList()
-        } else if indexPath.row < repoList.count {
-            router.openRepo(repoList[indexPath.row].url)
+        } else if indexPath.section == Sections.repos.rawValue {
+            guard indexPath.row < repoList.count else {
+                return
+            }
+            switch repoList[indexPath.row] {
+            case let .success(model):
+                router.openRepo(model.url)
+            case .error:
+                replaceLastState(with: .loading)
+                interactor.fetchRepoList()
+            default:
+                break
+            }
         }
     }
 
@@ -123,16 +132,68 @@ extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
         }
         return cell ?? UITableViewCell()
     }
+    
+    func loadRepoList(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell?
+        if indexPath.row < repoList.count {
+            switch repoList[indexPath.row] {
+            case let .success(model):
+                let repoCell = tableView.dequeueReusableCell(withIdentifier: UserRepoViewCell.reuseIdentifier, for: indexPath) as? UserRepoViewCell
+                repoCell?.setup(model)
+                cell = repoCell
+            case .loading:
+                interactor.fetchRepoList()
+                cell = dequeueLoadingCell(tableView, indexPath)
+            case .error:
+                cell = dequeueErrorCell(tableView, indexPath)
+            }
+        }
+        return cell ?? UITableViewCell()
+    }
+    
+    private func replaceLastState(with model: UserRepoViewModel) {
+        if repoList.popLast() != nil {
+            repoList.append(model)
+            let lastIndex = IndexPath(row: repoList.count-1, section: Sections.repos.rawValue)
+            tableView.reloadRows(at: [lastIndex], with: .top)
+        } else {
+            repoList.append(model)
+            let lastIndex = IndexPath(row: .zero, section: Sections.repos.rawValue)
+            tableView.insertRows(at: [lastIndex], with: .top)
+        }
+    }
 }
 
 // MARK: - UserDetailsDisplayProtocol
 extension UserDetailsScreen: UserDetailsDisplayProtocol {
     func displayUserDetails(_ details: UserDetailsViewModel) {
         detailsModel = details
-        tableView.reloadSections(.init(integer: 0), with: .fade)
+        tableView.reloadSections(.init(integer: Sections.details.rawValue), with: .fade)
     }
 
-    func displayRepoList(_ repoList: UserRepoViewModel) {
-        debugPrint(repoList)
+    func displayRepoList(_ repoList: [UserRepoViewModel]) {
+        let size = self.repoList.count
+        _ = self.repoList.popLast()
+        self.repoList.append(contentsOf: repoList)
+        if size == .zero {
+            tableView.reloadSections(.init(integer: Sections.repos.rawValue), with: .top)
+        } else {
+            let loadingIndex = IndexPath(row: size-1, section: Sections.repos.rawValue)
+            let newRows = (size-1..<self.repoList.count).map { row in
+                IndexPath(row: row, section: Sections.repos.rawValue)
+            }
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [loadingIndex], with: .top)
+            tableView.insertRows(at: newRows, with: .top)
+            tableView.endUpdates()
+        }
+    }
+}
+
+// MARK: - Sections
+extension UserDetailsScreen {
+    enum Sections: Int, CaseIterable {
+        case details
+        case repos
     }
 }

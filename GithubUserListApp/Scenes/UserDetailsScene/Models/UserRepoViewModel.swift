@@ -6,7 +6,7 @@
 //
 
 enum UserRepoViewModel {
-    case success([UserRepoSuccess])
+    case success(UserRepoSuccess)
     case loading
     case error
 }

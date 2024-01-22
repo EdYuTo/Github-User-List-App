@@ -43,7 +43,6 @@ extension UserDetailsInteractor: UserDetailsInteractorProtocol {
     }
 
     func fetchRepoList() {
-        presenter.presentRepoListLoading()
         let request = UserRepoListRequest(endpoint: reposUrl, nextPage: page, pageSize: pageSize)
         provider.makeRequest(request) { [weak self] (result: Result<UserRepoListResponse, Error>) in
             switch result {

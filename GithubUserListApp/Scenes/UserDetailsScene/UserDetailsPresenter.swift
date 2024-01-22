@@ -12,7 +12,6 @@ protocol UserDetailsPresenterProtocol {
     func presentUserDetailsLoading()
     func presentUserDetailsError()
     func presentRepoList(_ response: UserRepoListResponse)
-    func presentRepoListLoading()
     func presentRepoListError()
 }
 
@@ -47,32 +46,29 @@ extension UserDetailsPresenter: UserDetailsPresenterProtocol {
     }
 
     func presentRepoList(_ response: UserRepoListResponse) {
-        let viewModel: [UserRepoSuccess] = response.compactMap { responseModel in
+        var viewModel: [UserRepoViewModel] = response.compactMap { responseModel in
             guard !responseModel.fork else {
                 return nil
             }
-            return UserRepoSuccess(
-                name: responseModel.name,
-                description: responseModel.description ?? String(),
-                url: responseModel.cloneUrl,
-                stargazersCount: responseModel.stargazersCount,
-                language: responseModel.language ?? String()
+            return UserRepoViewModel.success(
+                UserRepoSuccess(
+                    name: responseModel.name,
+                    description: responseModel.description ?? String(),
+                    url: responseModel.cloneUrl,
+                    stargazersCount: responseModel.stargazersCount,
+                    language: responseModel.language ?? String()
+                )
             )
         }
+        viewModel.append(.loading)
         DispatchQueue.main.async { [weak self] in
-            self?.displayer?.displayRepoList(.success(viewModel))
-        }
-    }
-
-    func presentRepoListLoading() {
-        DispatchQueue.main.async { [weak self] in
-            self?.displayer?.displayRepoList(.loading)
+            self?.displayer?.displayRepoList(viewModel)
         }
     }
 
     func presentRepoListError() {
         DispatchQueue.main.async { [weak self] in
-            self?.displayer?.displayRepoList(.error)
+            self?.displayer?.displayRepoList([.error])
         }
     }
 }
