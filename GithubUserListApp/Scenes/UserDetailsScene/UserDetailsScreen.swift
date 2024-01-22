@@ -132,7 +132,7 @@ extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
         }
         return cell ?? UITableViewCell()
     }
-    
+
     func loadRepoList(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
         if indexPath.row < repoList.count {
@@ -150,7 +150,7 @@ extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
         }
         return cell ?? UITableViewCell()
     }
-    
+
     private func replaceLastState(with model: UserRepoViewModel) {
         if repoList.popLast() != nil {
             repoList.append(model)
