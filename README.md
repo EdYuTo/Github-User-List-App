@@ -34,3 +34,10 @@ You are required to create a client application that allows us to browse GitHub 
 - 2.3. Number of stars
 - 2.4. Description
 - 2.5. When you tap a row in the repository list, the URL of the repository should be displayed in WebView
+
+## Demo
+
+
+https://github.com/EdYuTo/Github-User-List-App/assets/18668585/caffea55-4e44-4ec5-8ab1-21bd12316019
+
+
