@@ -74,11 +74,11 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row < modelList.count {
             switch modelList[indexPath.row] {
             case let .success(model):
-                return loadUserCell(tableView, indexPath, model)
+                return dequeueUserCell(tableView, indexPath, model)
             case .loading:
-                return loadLoadingCell(tableView, indexPath)
+                return dequeueLoadingCell(tableView, indexPath)
             case .error:
-                return loadErrorCell(tableView, indexPath)
+                return dequeueErrorCell(tableView, indexPath)
             }
         }
         return UITableViewCell()
@@ -113,7 +113,7 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    private func loadUserCell(
+    private func dequeueUserCell(
         _ tableView: UITableView,
         _ indexPath: IndexPath,
         _ model: UserSuccess
@@ -126,22 +126,6 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
         }
         viewCell.setup(model)
         return viewCell
-    }
-
-    private func loadLoadingCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: LoadingTableViewCell.reuseIdentifier,
-            for: indexPath
-        )
-        cell.selectionStyle = .none
-        return cell
-    }
-
-    private func loadErrorCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(
-            withIdentifier: ErrorTableViewCell.reuseIdentifier,
-            for: indexPath
-        )
     }
 }
 
