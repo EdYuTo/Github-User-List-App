@@ -10,8 +10,13 @@ enum NetworkConstants {
         static let users = "https://api.github.com/users"
     }
 
+    enum Params {
+        static let bearer = "Bearer "
+    }
+
     enum Header {
         static let accept = "Accept"
         static let gitApiVersion = "X-GitHub-Api-Version"
+        static let auth = "Authorization"
     }
 }
