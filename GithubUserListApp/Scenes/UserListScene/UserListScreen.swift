@@ -76,6 +76,7 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
             case let .success(model):
                 return dequeueUserCell(tableView, indexPath, model)
             case .loading:
+                interactor.fetchList()
                 return dequeueLoadingCell(tableView, indexPath)
             case .error:
                 return dequeueErrorCell(tableView, indexPath)
@@ -97,19 +98,6 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
             interactor.fetchList()
         default:
             break
-        }
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard modelList.last != UserViewModel.error else {
-            return
-        }
-        let height = scrollView.frame.size.height
-        let contentYOffset = scrollView.contentOffset.y
-        let distanceFromBottom = scrollView.contentSize.height - contentYOffset
-
-        if distanceFromBottom < height {
-            interactor.fetchList()
         }
     }
 

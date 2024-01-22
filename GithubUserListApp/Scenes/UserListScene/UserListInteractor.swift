@@ -25,10 +25,10 @@ final class UserListInteractor {
 extension UserListInteractor: UserListInteractorProtocol {
     func fetchList() {
         guard !isLoading else { return }
-        isLoading.toggle()
+        isLoading = true
         let request = UserListRequest(lastId: lastId, pageSize: pageSize)
         provider.makeRequest(request) { [weak self] (result: Result<UserListResponse, Error>) in
-            self?.isLoading.toggle()
+            self?.isLoading = false
             switch result {
             case let .success(response):
                 self?.lastId = response.last?.id ?? 0
