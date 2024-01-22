@@ -32,6 +32,7 @@ final class UserDetailsRouter {
 
 extension UserDetailsRouter: UserDetailsRouterProtocol {
     func openRepo(_ url: String) {
-        debugPrint(">>>>>", url)
+        let webView = WebViewController(url: url)
+        viewController?.navigationController?.present(webView, animated: true)
     }
 }
