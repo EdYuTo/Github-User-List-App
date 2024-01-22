@@ -9,6 +9,8 @@ import UIKit
 
 enum Image: String {
     case person = "Person"
+    case star = "Star"
+    case laptop = "Laptop"
 
     var bundle: Bundle {
         Bundle(for: BundleHolder.self)
