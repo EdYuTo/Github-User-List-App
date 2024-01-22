@@ -14,7 +14,7 @@ enum UserRepoViewModel {
 struct UserRepoSuccess: Decodable {
     let name: String
     let description: String
-    let cloneUrl: String
+    let url: String
     let stargazersCount: Int
     let language: String
 }

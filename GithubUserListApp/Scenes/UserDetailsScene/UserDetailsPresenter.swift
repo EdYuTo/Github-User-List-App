@@ -54,19 +54,25 @@ extension UserDetailsPresenter: UserDetailsPresenterProtocol {
             return UserRepoSuccess(
                 name: responseModel.name,
                 description: responseModel.description ?? String(),
-                cloneUrl: responseModel.cloneUrl,
+                url: responseModel.cloneUrl,
                 stargazersCount: responseModel.stargazersCount,
                 language: responseModel.language ?? String()
             )
         }
-        displayer?.displayRepoList(.success(viewModel))
+        DispatchQueue.main.async { [weak self] in
+            self?.displayer?.displayRepoList(.success(viewModel))
+        }
     }
 
     func presentRepoListLoading() {
-        displayer?.displayRepoList(.loading)
+        DispatchQueue.main.async { [weak self] in
+            self?.displayer?.displayRepoList(.loading)
+        }
     }
 
     func presentRepoListError() {
-        displayer?.displayRepoList(.error)
+        DispatchQueue.main.async { [weak self] in
+            self?.displayer?.displayRepoList(.error)
+        }
     }
 }
