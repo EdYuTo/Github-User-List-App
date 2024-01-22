@@ -9,7 +9,7 @@ import UIKit
 
 protocol UserDetailsDisplayProtocol: AnyObject {
     func displayUserDetails(_ details: UserDetailsViewModel)
-    func displayRepoList(_ repoList: UserRepoViewModel)
+    func displayRepoList(_ model: UserRepoViewModel)
 }
 
 final class UserDetailsScreen: UIViewController {
@@ -25,7 +25,6 @@ final class UserDetailsScreen: UIViewController {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .none
         tableView.register(UserDetailsViewCell.self, forCellReuseIdentifier: UserDetailsViewCell.reuseIdentifier)
         tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.reuseIdentifier)
         tableView.register(ErrorTableViewCell.self, forCellReuseIdentifier: ErrorTableViewCell.reuseIdentifier)
@@ -100,6 +99,10 @@ extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0, case .error = detailsModel {
             interactor.fetchUserDetails()
+        } else if case .error = repoModel {
+            interactor.fetchRepoList()
+        } else if indexPath.row < repoList.count {
+            router.openRepo(repoList[indexPath.row].url)
         }
     }
 
@@ -112,20 +115,9 @@ extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
             userCell?.selectionStyle = .none
             cell = userCell
         case .loading:
-            let loadingCell = tableView.dequeueReusableCell(
-                withIdentifier: LoadingTableViewCell.reuseIdentifier,
-                for: indexPath
-            ) as? LoadingTableViewCell
-            loadingCell?.setup()
-            loadingCell?.selectionStyle = .none
-            cell = loadingCell
+            cell = dequeueLoadingCell(tableView, indexPath)
         case .error:
-            let errorCell = tableView.dequeueReusableCell(
-                withIdentifier: ErrorTableViewCell.reuseIdentifier,
-                for: indexPath
-            ) as? ErrorTableViewCell
-            errorCell?.setup()
-            cell = errorCell
+            cell = dequeueErrorCell(tableView, indexPath)
         default:
             break
         }
