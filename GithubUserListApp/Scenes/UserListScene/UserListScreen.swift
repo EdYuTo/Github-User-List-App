@@ -129,25 +129,19 @@ extension UserListScreen: UITableViewDelegate, UITableViewDataSource {
     }
 
     private func loadLoadingCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        guard let viewCell = tableView.dequeueReusableCell(
+        let cell = tableView.dequeueReusableCell(
             withIdentifier: LoadingTableViewCell.reuseIdentifier,
             for: indexPath
-        ) as? LoadingTableViewCell else {
-            return UITableViewCell()
-        }
-        viewCell.setup()
-        return viewCell
+        )
+        cell.selectionStyle = .none
+        return cell
     }
 
     private func loadErrorCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        guard let viewCell = tableView.dequeueReusableCell(
+        tableView.dequeueReusableCell(
             withIdentifier: ErrorTableViewCell.reuseIdentifier,
             for: indexPath
-        ) as? ErrorTableViewCell else {
-            return UITableViewCell()
-        }
-        viewCell.setup()
-        return viewCell
+        )
     }
 }
 
