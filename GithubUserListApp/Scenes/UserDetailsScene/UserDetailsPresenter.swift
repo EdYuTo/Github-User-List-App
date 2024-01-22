@@ -60,7 +60,9 @@ extension UserDetailsPresenter: UserDetailsPresenterProtocol {
                 )
             )
         }
-        viewModel.append(.loading)
+        if !viewModel.isEmpty {
+            viewModel.append(.loading)
+        }
         DispatchQueue.main.async { [weak self] in
             self?.displayer?.displayRepoList(viewModel)
         }

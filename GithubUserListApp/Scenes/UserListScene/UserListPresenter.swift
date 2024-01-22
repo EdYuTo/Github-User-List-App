@@ -27,7 +27,9 @@ extension UserListPresenter: UserListPresenterProtocol {
                 )
             )
         }
-        data.append(UserViewModel.loading)
+        if !data.isEmpty {
+            data.append(UserViewModel.loading)
+        }
         DispatchQueue.main.async { [weak self] in
             self?.displayer?.displayData(data)
         }
