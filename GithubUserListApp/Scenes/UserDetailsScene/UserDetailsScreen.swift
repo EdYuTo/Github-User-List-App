@@ -119,7 +119,10 @@ extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
         var cell: UITableViewCell?
         switch detailsModel {
         case let .success(details):
-            let userCell = tableView.dequeueReusableCell(withIdentifier: UserDetailsViewCell.reuseIdentifier, for: indexPath) as? UserDetailsViewCell
+            let userCell = tableView.dequeueReusableCell(
+                withIdentifier: UserDetailsViewCell.reuseIdentifier,
+                for: indexPath
+            ) as? UserDetailsViewCell
             userCell?.setup(details)
             userCell?.selectionStyle = .none
             cell = userCell
@@ -138,7 +141,10 @@ extension UserDetailsScreen: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row < repoList.count {
             switch repoList[indexPath.row] {
             case let .success(model):
-                let repoCell = tableView.dequeueReusableCell(withIdentifier: UserRepoViewCell.reuseIdentifier, for: indexPath) as? UserRepoViewCell
+                let repoCell = tableView.dequeueReusableCell(
+                    withIdentifier: UserRepoViewCell.reuseIdentifier,
+                    for: indexPath
+                ) as? UserRepoViewCell
                 repoCell?.setup(model)
                 cell = repoCell
             case .loading:

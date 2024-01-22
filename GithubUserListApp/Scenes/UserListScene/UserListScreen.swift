@@ -144,7 +144,10 @@ extension UserListScreen: UserListDisplayProtocol {
                 message: nil,
                 preferredStyle: .alert
             )
-            let action = UIAlertAction(title: Localizable.retryButtonTitle.localized, style: .default) { [weak self] _ in
+            let action = UIAlertAction(
+                title: Localizable.retryButtonTitle.localized,
+                style: .default
+            ) { [weak self] _ in
                 self?.interactor.fetchList()
             }
             alert.addAction(action)

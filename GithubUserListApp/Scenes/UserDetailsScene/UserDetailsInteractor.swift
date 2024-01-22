@@ -19,7 +19,12 @@ final class UserDetailsInteractor {
     var page = 1
     var isLoading = false
 
-    init(userName: String, reposUrl: String, provider: NertworkProviderProcotol, presenter: UserDetailsPresenterProtocol) {
+    init(
+        userName: String,
+        reposUrl: String,
+        provider: NertworkProviderProcotol,
+        presenter: UserDetailsPresenterProtocol
+    ) {
         self.userName = userName
         self.reposUrl = reposUrl
         self.provider = provider
