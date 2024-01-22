@@ -47,6 +47,10 @@
 		23D8A1F52B5DAE47003A0A4C /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1F42B5DAE47003A0A4C /* AsyncImageView.swift */; };
 		23D8A1F72B5DC0D7003A0A4C /* FollowersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1F62B5DC0D7003A0A4C /* FollowersView.swift */; };
 		23D8A1FA2B5DC3CE003A0A4C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1F92B5DC3CE003A0A4C /* Image.swift */; };
+		23D8A1FC2B5DDAB3003A0A4C /* UserRepoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1FB2B5DDAB3003A0A4C /* UserRepoViewCell.swift */; };
+		23D8A1FE2B5DDFEC003A0A4C /* IconLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1FD2B5DDFEC003A0A4C /* IconLabelView.swift */; };
+		23D8A2002B5DEF52003A0A4C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A1FF2B5DEF52003A0A4C /* WebViewController.swift */; };
+		23D8A2032B5DF618003A0A4C /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8A2022B5DF618003A0A4C /* UIViewController+extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +116,10 @@
 		23D8A1F42B5DAE47003A0A4C /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		23D8A1F62B5DC0D7003A0A4C /* FollowersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersView.swift; sourceTree = "<group>"; };
 		23D8A1F92B5DC3CE003A0A4C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		23D8A1FB2B5DDAB3003A0A4C /* UserRepoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepoViewCell.swift; sourceTree = "<group>"; };
+		23D8A1FD2B5DDFEC003A0A4C /* IconLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabelView.swift; sourceTree = "<group>"; };
+		23D8A1FF2B5DEF52003A0A4C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		23D8A2022B5DF618003A0A4C /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +267,8 @@
 		23D8A1B32B5C2603003A0A4C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				23D8A2012B5DF600003A0A4C /* Extensions */,
+				23D8A1FF2B5DEF52003A0A4C /* WebViewController.swift */,
 				23D8A1F82B5DC3BE003A0A4C /* Constants */,
 				23D8A1F32B5DADEA003A0A4C /* Views */,
 				23D8A1B42B5C2619003A0A4C /* ImageProvider.swift */,
@@ -301,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				23D8A1ED2B5DAA71003A0A4C /* UserDetailsViewCell.swift */,
+				23D8A1FB2B5DDAB3003A0A4C /* UserRepoViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,6 +323,7 @@
 				23D8A1C52B5C95AA003A0A4C /* ErrorTableViewCell.swift */,
 				23D8A1F42B5DAE47003A0A4C /* AsyncImageView.swift */,
 				23D8A1F62B5DC0D7003A0A4C /* FollowersView.swift */,
+				23D8A1FD2B5DDFEC003A0A4C /* IconLabelView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,6 +335,14 @@
 				23D8A1F92B5DC3CE003A0A4C /* Image.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		23D8A2012B5DF600003A0A4C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				23D8A2022B5DF618003A0A4C /* UIViewController+extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,8 +477,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23D8A2002B5DEF52003A0A4C /* WebViewController.swift in Sources */,
 				23D8A1D82B5CB2E4003A0A4C /* NetworkConstants.swift in Sources */,
 				23D8A1FA2B5DC3CE003A0A4C /* Image.swift in Sources */,
+				23D8A1FE2B5DDFEC003A0A4C /* IconLabelView.swift in Sources */,
 				23D8A1B72B5C2F66003A0A4C /* UserListRequest.swift in Sources */,
 				23D8A1C22B5C484B003A0A4C /* LoadingTableViewCell.swift in Sources */,
 				23D8A1D62B5CAFDA003A0A4C /* Localizable.swift in Sources */,
@@ -484,10 +506,12 @@
 				23D8A1F72B5DC0D7003A0A4C /* FollowersView.swift in Sources */,
 				23D8A1DC2B5D275A003A0A4C /* UserDetailsRouter.swift in Sources */,
 				23D8A1B02B5C2557003A0A4C /* HTTPMethod.swift in Sources */,
+				23D8A1FC2B5DDAB3003A0A4C /* UserRepoViewCell.swift in Sources */,
 				23D8A1E82B5D36E6003A0A4C /* UserRepoListRequest.swift in Sources */,
 				23D8A1A92B5C22C0003A0A4C /* UserListRouter.swift in Sources */,
 				23D8A1BC2B5C350D003A0A4C /* ViewCodeProtocol.swift in Sources */,
 				23D8A1E42B5D34C2003A0A4C /* UserRepoListResponse.swift in Sources */,
+				23D8A2032B5DF618003A0A4C /* UIViewController+extensions.swift in Sources */,
 				23D8A1992B5BFEFD003A0A4C /* UserListScreen.swift in Sources */,
 				23D8A19F2B5C0239003A0A4C /* UserDetailsScreen.swift in Sources */,
 				23D8A1EA2B5D93E2003A0A4C /* UserDetailsViewModel.swift in Sources */,
